@@ -1,0 +1,4 @@
+Flask
+selenium
+Flask-Limiter
+gunicorn
