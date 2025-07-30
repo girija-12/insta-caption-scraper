@@ -9,6 +9,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import logging
 from selenium.webdriver.chrome.service import Service
+import os
 
 service = Service("/usr/bin/chromedriver")  # works with chromium-driver in Docker
 
