@@ -1,8 +1,9 @@
 services:
   - type: web
-    name: instagram-caption-extractor
+    name: insta-caption-scraper
     env: docker
     plan: free
     autoDeploy: true
-    ports:
-      - 10000
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "TRUE"
