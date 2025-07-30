@@ -8,6 +8,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import logging
+from selenium.webdriver.chrome.service import Service
+
+service = Service("/usr/bin/chromedriver")  # works with chromium-driver in Docker
 
 logging.basicConfig(
     level=logging.INFO,  # Change to DEBUG for more detailed logs
@@ -46,8 +49,7 @@ def get_reel_caption(url):
         "--user-agent=Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) "
         "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15A372 Safari/604.1"
     )
-
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(service=service, options=options)
     wait = WebDriverWait(driver, 15)
 
     try:
