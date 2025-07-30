@@ -22,22 +22,15 @@ RUN apt-get update && apt-get install -y \
     wget \
     --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
-# Set environment variables for Chromium
 ENV CHROME_BIN=/usr/bin/chromium
 ENV CHROMEDRIVER_PATH=/usr/bin/chromedriver
 
-# Set working directory
 WORKDIR /app
-
-# Copy app files
 COPY . /app
 
-# Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Expose app port
 EXPOSE 10000
 
-# Run the Flask app using Gunicorn
-CMD ["gunicorn", "-b", "0.0.0.0:10000", "app:app"]
+CMD ["sh", "-c", "gunicorn -b 0.0.0.0:$PORT app:app"]
